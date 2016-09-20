@@ -76,7 +76,11 @@ public final class ObjectTypeAdapter extends TypeAdapter<Object> {
       return in.nextString();
 
     case NUMBER:
-      return in.nextDouble();
+      Double real = in.nextDouble();
+      if (real.intValue() == real)
+        return real.intValue();
+      else
+        return in.nextDouble();
 
     case BOOLEAN:
       return in.nextBoolean();
